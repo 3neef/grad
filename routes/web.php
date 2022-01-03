@@ -20,7 +20,12 @@ Route::get('/', function () {
 Route::group(['middleware'=>['auth']], function(){
     Route::get('/dashboard', 'App\Http\Controllers\PageController@index')->name('dashboard');
 });
-
+// route for outbreakmap index
+Route::get('/outbreakmap', 'App\Http\Controllers\OutbreakMapController@index')->name('outbreakmap.index');
+// route for creating new outbreak
+Route::get('/outbreaks/create', 'App\Http\Controllers\OutbreakController@create')->name('outbreaks.create');
+// resource route for outbreaks
+Route::resource('/outbreaks', 'App\Http\Controllers\OutbreakController');
 
 Route::middleware('auth')->group(function () {
     Route::view('about', 'about')->name('about');

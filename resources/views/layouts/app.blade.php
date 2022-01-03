@@ -13,6 +13,7 @@
         <!-- Scripts -->
         <script src="{{ asset('js/app.js') }}" defer></script>
         <script src="{{ asset('js/init-alpine.js') }}"></script>
+        @yield('styles')
 </head>
 <body>
 <div
@@ -37,5 +38,7 @@
         </main>
     </div>
 </div>
+<script src="{{ asset('js/app.js') }}"></script>
+@stack('scripts')
 </body>
 </html>

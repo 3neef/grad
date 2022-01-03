@@ -17,3 +17,10 @@ use Illuminate\Support\Facades\Route;
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
+Route::group(['as' => 'api.', 'namespace' => 'Api'], function () {
+    /*
+     * Outlets Endpoints
+     */
+    // route for outbreaks api index
+    Route::get('outbreaks', 'App\Http\Controllers\Api\OutbreakController@index')->name('outbreaks.index');
+});
