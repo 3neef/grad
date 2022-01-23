@@ -49,7 +49,7 @@
                     <svg class="w-5 h-5" aria-hidden="true" fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" stroke="currentColor">
                         <path d="M4 6h16M4 10h16M4 14h16M4 18h16"></path>
                     </svg>
-                    <span class="ml-4">Two-level menu</span>
+                    <span class="ml-4">Medical Record</span>
                 </span>
                     <svg class="w-4 h-4" aria-hidden="true" fill="currentColor" viewBox="0 0 20 20">
                         <path fill-rule="evenodd"
@@ -65,7 +65,10 @@
                         class="p-2 mt-2 space-y-2 overflow-hidden text-sm font-medium text-gray-500 rounded-md shadow-inner bg-gray-50 dark:text-gray-400 dark:bg-gray-900"
                         aria-label="submenu">
                         <li class="px-2 py-1 transition-colors duration-150 hover:text-gray-800 dark:hover:text-gray-200">
-                            <a class="w-full" href="#">Child menu</a>
+                            <a class="w-full" href="{{route('personals.create')}}">Personal Information</a>
+                        </li>
+                        <li class="px-2 py-1 transition-colors duration-150 hover:text-gray-800 dark:hover:text-gray-200">
+                            <a class="w-full" href="{{route('personals.show' , 'personal')}}">Show Personal Information</a>
                         </li>
                     </ul>
                 </template>

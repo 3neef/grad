@@ -17,6 +17,7 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+
 Route::group(['middleware'=>['auth']], function(){
     Route::get('/dashboard', 'App\Http\Controllers\PageController@index')->name('dashboard');
 });
@@ -38,6 +39,11 @@ Route::middleware('auth')->group(function () {
 
 Route::group(['middleware'=>['auth', 'role:user']], function(){
     Route::get('/dashboard/profile', 'App\Http\Controllers\PageController@profile')->name('dashboard.profile');
+
+    //route resource for personals
+    Route::resource('/personals', 'App\Http\Controllers\PersonalController');
+    Route::resource('/meds', 'App\Http\Controllers\MedController');
+    // Route::post('/personal', 'App\Http\Controllers\MedController@store')->name('meds.store');
 });
 
 Route::group(['middleware'=>['auth', 'role:doctor']], function(){

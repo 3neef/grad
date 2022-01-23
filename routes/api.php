@@ -22,5 +22,5 @@ Route::group(['as' => 'api.', 'namespace' => 'Api'], function () {
      * Outlets Endpoints
      */
     // route for outbreaks api index
-    Route::get('outbreaks', 'App\Http\Controllers\Api\OutbreakController@index')->name('outbreaks.index');
 });
+Route::get('outbreaks', 'App\Http\Controllers\Api\OutbreakController@index')->name('api.outbreaks.index');

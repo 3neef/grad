@@ -14,11 +14,20 @@ class User extends Authenticatable
     use LaratrustUserTrait;
     use HasApiTokens, HasFactory, Notifiable;
 
-    /**
-     * The attributes that are mass assignable.
-     *
-     * @var array<int, string>
-     */
+    //hasone personal
+    public function personal()
+    {
+        return $this->hasOne('App\Models\Personal');
+
+    }
+
+    //hasone med
+    public function med()
+    {
+        return $this->hasOne('App\Models\Med');
+
+    }
+
     protected $fillable = [
         'name',
         'email',
