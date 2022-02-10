@@ -1,9 +1,26 @@
 @extends('layouts.app1')
 
 @section('content')
-<div class="card">
-    <div class="card-body" id="mapid"></div>
+<div class="flex flex-col h-screen max-h-screen ">
+    <!-- Search / Results -->
+    <h1 class="sm:text-3xl text-2xl font-medium title-font text-center text-gray-900 mb-20">Raw Denim Heirloom Man Braid
+        <br class="hidden sm:block">
+      </h1>
+    {{-- playin  --}}
+
+<div class='flex items-center justify-center  md:flex-row  min-h-screen from-gray-100 via-gray-300 to-gray-900 bg-gradient-to-br'>
+    <div class='w-full  max-w-4xl  mx-auto  shadow-xl flex flex-col rounded-md border-2 border-gray-200'>
+ 
+
+    <div id="mapid" class=" rounded-md"></div>
+
+ </div>
+
 </div>
+
+    <!-- Map -->
+    
+  </div>
 @endsection
 
 @section('styles')
@@ -13,6 +30,7 @@
 
 <style>
     #mapid { min-height: 500px; }
+    /* #mapid {min-width: 800px; } */
 </style>
 @endsection
 @push('scripts')
@@ -22,12 +40,23 @@
     crossorigin=""></script>
 
 <script>
+    
     var map = L.map('mapid').setView([{{ config('leaflet.map_center_latitude') }}, {{ config('leaflet.map_center_longitude') }}], {{ config('leaflet.zoom_level') }});
+   var greenIcon = new L.Icon({
+  iconUrl: 'images/pin.png',
+//   shadowUrl: 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.7/images/marker-shadow.png',
+  iconSize: [40, 41],
+  iconAnchor: [12, 41],
+  popupAnchor: [1, -34],
+  shadowSize: [41, 41]
+});
     var baseUrl = "{{ url('/') }}";
 
-    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-        attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+    L.tileLayer('https://tiles.stadiamaps.com/tiles/alidade_smooth_dark/{z}/{x}/{y}{r}.png', {
+        attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">MazinStreetMap</a> contributors'
     }).addTo(map);
+
+    
 
     axios.get('{{ route('api.outbreaks.index') }}')
     .then(function (response) {
@@ -58,8 +87,9 @@
 
         var popupContent = "Your location : " + latitude + ", " + longitude + ".";
         popupContent += '<br><a href="{{ route('outbreaks.create') }}?latitude=' + latitude + '&longitude=' + longitude + '">Add new outbreak here</a>';
+        
 
-        theMarker = L.marker([latitude, longitude]).addTo(map);
+        theMarker = L.marker([latitude, longitude], {icon: greenIcon}).addTo(map);
         theMarker.bindPopup(popupContent)
         .openPopup();
     });

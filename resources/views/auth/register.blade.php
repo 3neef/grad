@@ -14,7 +14,7 @@
                 <x-auth-validation-errors :errors="$errors"/>
 
                 <form method="POST" action="{{ route('register') }}">
-                @csrf
+                @csrf 
 
                     <div class="mt-4">
                         <x-label for="name" :value="__('Name')"/>

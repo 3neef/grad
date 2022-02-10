@@ -74,9 +74,9 @@ class Outbreak extends Model
     public function getMapPopupContentAttribute()
     {
         $mapPopupContent = '';
-        $mapPopupContent .= '<div class="my-2"><strong>'.__('outbreak.name').':</strong><br>'.$this->name_link.'</div>';
-        $mapPopupContent .= '<div class="my-2"><strong>'.__('outbreak.coordinate').':</strong><br>'.$this->coordinate.'</div>';
-
+        $mapPopupContent .= '<div class="my-2"><strong>'.__('outbreak name').':</strong><br>'.$this->name_link.'</div>';
+        $mapPopupContent .= '<div class="my-2"><strong>'.__('outbreak coordinates').':</strong><br>'.$this->coordinate.'</div>';
+        $mapPopupContent .= '<div class="my-2"><strong>'.__('notes').':</strong><br> don`t go to this area </div>';
         return $mapPopupContent;
     }
 }

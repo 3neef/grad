@@ -49,13 +49,13 @@ class MedController extends Controller
        $med = Med::create([
             'blood' => $request->blood,
             'alarg' => $request->alarg,
-            'chron' => $request->chron,
+            'chronic' => $request->chron,
             'insure' => $request->insure,
             'user_id' => $request->user_id,
         ]);
 
         $med->save();
-        return redirect()->route('personals.create')->with('success', 'Medical Information has been added');
+        return redirect()->route('personals.create')->with('success', 'Personal Information has been added');
     }
 
     /**

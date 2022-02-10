@@ -27,6 +27,18 @@ class User extends Authenticatable
         return $this->hasOne('App\Models\Med');
 
     }
+    //hasmany medical
+    public function medical()
+    {
+        /**
+         * Get all of the comments for the User
+         *
+         * 
+         */
+        
+            return $this->hasMany(Comment::class, 'foreign_key', 'local_key');
+        
+    }
 
     protected $fillable = [
         'name',
