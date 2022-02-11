@@ -21,8 +21,10 @@
     <script src="{{ asset('js/init-alpine.js') }}"></script>
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
     @yield('styles')
+    @livewireStyles
+    @powerGridStyles
 </head>
-<body class=" overflow-y-scroll scrollbar">
+<body class="bg-gray-100 overflow-y-scroll scrollbar">
     <div id="app">
         {{-- <nav class="navbar navbar-expand-md navbar-light navbar-laravel">
             <div class="container">
@@ -166,16 +168,18 @@
        
         {{-- trying my navbar --}}
 
-        <main class="h-full ">
-            <div class="container px-6 mx-auto grid ">
+        <main class="">
+            <div class="container mx-auto">
               
+                @yield('content')
             </div>
-            @yield('content')
         </main>
         {{-- @include('layouts.partials.footer') --}}
     </div>
     <!-- Scripts -->
     <script src="{{ asset('js/app.js') }}"></script>
     @stack('scripts')
+    @livewireScripts
+    @powerGridScripts
 </body>
 </html>

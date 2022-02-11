@@ -3,7 +3,7 @@
 @section('content')
 <div class="flex flex-col h-screen max-h-screen ">
     <!-- Search / Results -->
-    <h1 class="sm:text-3xl text-2xl font-medium title-font text-center text-gray-900 mb-20">Raw Denim Heirloom Man Braid
+    <h1 class="sm:text-3xl text-2xl font-medium title-font text-center text-gray-900 mb-20">The Outbreaks Map
         <br class="hidden sm:block">
       </h1>
     {{-- playin  --}}

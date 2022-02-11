@@ -16,6 +16,6 @@ mix.js('resources/js/app.js', 'public/js').postCss('resources/css/app.css', 'pub
     require('postcss-import'),
     require('tailwindcss'),
     require('autoprefixer'),
-]);
+])
+.browserSync('127.0.0.1:8000');
 // mix.browserSync('http://127.0.0.1:8000/');
-mix.browserSync({"browser": "google chrome", "proxy": "http://127.0.0.1:8000/"});

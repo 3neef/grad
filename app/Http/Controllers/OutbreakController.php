@@ -16,9 +16,10 @@ class OutbreakController extends Controller
     {
         // $this->authorize('manage_Outbreak');
 
-        $outbreakQuery = Outbreak::query();
-        $outbreakQuery->where('name', 'like', '%'.request('q').'%');
-        $outbreaks = $outbreakQuery->paginate(25);
+        // $outbreakQuery = Outbreak::query();
+        // $outbreakQuery->where('name', 'like', '%'.request('q').'%');
+        // $outbreaks = $outbreakQuery->paginate(25);
+        $outbreaks = Outbreak::paginate();
 
         return view('outbreaks.index', compact('outbreaks'));
     }
