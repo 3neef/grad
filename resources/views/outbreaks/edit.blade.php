@@ -102,11 +102,11 @@
                 <div class=" grid grid-cols-4 gap-3 ">
 
                     @can('delete', $outbreak)
-                    <div class="col-span-4 sm:col-span-2 mt-4 mb-2 text-center font-mono rounded-full bg-red-500 hover:text-orange-400">
+                    <div class="col-span-4 sm:col-span-2 mt-4 mb-2 text-center font-mono rounded-full text-white bg-red-500 hover:text-orange-400">
                       <a href="{{ route('outbreaks.edit', [$outbreak, 'action' => 'delete']) }}" id="del-outbreak-{{ $outbreak->id }}" >{{ __('Delete') }}</a>
                     </div>
                 @endcan
-                <div class="col-span-4 sm:col-span-2 mt-4 mb-2 text-center font-mono">
+                <div class="col-span-4 sm:col-span-2 mt-4 mb-2 text-center font-mono rounded-full text-white bg-blue-500 hover:bg-teal-400">
                     <a href="{{ route('outbreaks.show', $outbreak )}}" class="btn btn-link">{{ __('cancel ?') }}</a>
                 </div>    
             </div>

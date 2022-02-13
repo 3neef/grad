@@ -75,6 +75,7 @@
                 </div>
             </div>
         </nav> --}}
+        @if (Route::currentRouteName() != 'outbreakmap.index')
         <nav class="bg-white border-gray-200 shadow mb-10">
             <div x-data="{ isOpen: false }" class="max-w-3xl mx-auto py-3 px-6 md:px-0 md:flex md:justify-between md:items-center">
                 <div class="flex justify-between items-center">
@@ -165,14 +166,24 @@
                 </div>
             </div>
         </nav>
+            
+        @endif
        
         {{-- trying my navbar --}}
 
         <main class="">
+            @if (Route::is('outbreakmap.index') )
+            
+              
+                @yield('content')
+            
+            @else
             <div class="container mx-auto">
               
                 @yield('content')
             </div>
+                
+            @endif
         </main>
         {{-- @include('layouts.partials.footer') --}}
     </div>
