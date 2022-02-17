@@ -43,23 +43,23 @@
             <a
               href="{{ route('outbreaks.index') }}"
               class="inline-block py-1 md:py-4 text-gray-600 mr-6 font-bold"
-              >How it Works</a
+              >Outbreaks Map</a
             >
             <a
               href="#"
               class="inline-block py-1 md:py-4 text-gray-500 hover:text-gray-600 mr-6"
-              >Solutions</a
+              >Outbreaks List</a
             >
               
             <a
               href="#"
               class="inline-block py-1 md:py-4 text-gray-500 hover:text-gray-600 mr-6"
-              >Pricing</a
+              >About</a
             >
             <a
               href="#"
               class="inline-block py-1 md:py-4 text-gray-500 hover:text-gray-600 mr-6"
-              >Desktop</a
+              >Dashboard</a
             >
           </div>
         </div>
@@ -92,6 +92,11 @@
           >
           The Outbreak Map
           </h1>
+          <h1
+            class="font-bold text-gray-700 text-xl sm:text-2xl md:text-5xl leading-tight mb-6"
+          >
+          {{$agent->device();}}
+          </h1>
     
     
           <div
@@ -116,10 +121,11 @@
       </svg>
     </div>
     
+    @if ($agent->isDesktop())
     <div
       class="max-w-4xl mx-auto bg-white shadow-lg relative z-20 hidden md:block"
       style="margin-top: -320px; border-radius: 20px;"
-    >
+       >
       <div
         class="h-20 w-20 rounded-full bg-yellow-500 absolute top-0 left-0 -ml-10 -mt-10"
         style="z-index: -1;"
@@ -131,13 +137,14 @@
       ></div>
     
       
-      <div id="mapid" class="flex rounded-md border-2 border-yellow-500" style="height: 550px;">
+      <div id="mapid" class="flex rounded-md border-2 border-yellow-500 shadow-2xl" style="height: 550px;">
      
         
       </div>
     </div>
     
-    <div class="px-4 md:hidden">
+    @else
+    <div class="px-4">
       <div
         class="-mt-10 max-w-4xl mx-auto bg-white shadow-lg relative z-20"
         style="border-radius: 20px;"
@@ -148,6 +155,9 @@
             </div>
       </div>
     </div>
+    
+    @endif
+    
     
     
     </div>
@@ -195,7 +205,7 @@
         console.log(response.data);
         L.geoJSON(response.data, {
             pointToLayer: function(geoJsonPoint, latlng) {
-                return L.marker(latlng);
+                return L.marker(latlng, {icon: greenIcon});
             }
         })
         .bindPopup(function (layer) {
@@ -205,6 +215,7 @@
     .catch(function (error) {
         console.log(error);
     });
+  
 
     @can('create', new App\Models\Outbreak)
     var theMarker;

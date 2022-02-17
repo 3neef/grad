@@ -18,7 +18,7 @@
         @endcan
     </div>
     <div class="p-4 ">
-      <h4>The Outbreaks  List</h4>
+      <h4 class=" font-semibold">The Outbreaks  List</h4>
   </div>
     <div class=" mt-4 bg-white rounded-xl shadow-2xl">
       <livewire:outbreaks-table/>

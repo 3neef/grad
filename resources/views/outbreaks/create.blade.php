@@ -73,7 +73,7 @@
     var mapCenter = [{{ request('latitude', config('leaflet.map_center_latitude')) }}, {{ request('longitude', config('leaflet.map_center_longitude')) }}];
     var map = L.map('mapid').setView(mapCenter, {{ config('leaflet.zoom_level') }});
     var greenIcon = new L.Icon({
-  iconUrl: '/public/images/login-office.jpeg',
+  iconUrl: 'https://raw.githubusercontent.com/3neef/media/main/pin.png',
 //   shadowUrl: 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.7/images/marker-shadow.png',
   iconSize: [40, 41],
   iconAnchor: [12, 41],

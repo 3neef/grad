@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Jenssegers\Agent\Agent;
 
 class OutbreakMapController extends Controller
 {
@@ -14,6 +15,8 @@ class OutbreakMapController extends Controller
      */
     public function index(Request $request)
     {
-        return view('outbreaks.map');
+        
+        $agent = new Agent();
+        return view('outbreaks.map',compact('agent'));
     }
 }
