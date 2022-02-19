@@ -8,13 +8,14 @@ use Illuminate\Database\Eloquent\Model;
 
 class Outbreak extends Model
 {
+    use HasFactory;
      /**
      * The attributes that are mass assignable.
      *
      * @var array
      */
     protected $fillable = [
-        'name', 'address', 'latitude', 'longitude', 'creator_id',
+        'name', 'cases', 'country', 'address', 'latitude', 'longitude', 'creator_id',
     ];
 
     /**
@@ -74,9 +75,10 @@ class Outbreak extends Model
     public function getMapPopupContentAttribute()
     {
         $mapPopupContent = '';
-        $mapPopupContent .= '<div class="my-2"><strong>'.__('outbreak name').':</strong><br>'.$this->name_link.'</div>';
-        $mapPopupContent .= '<div class="my-2"><strong>'.__('outbreak coordinates').':</strong><br>'.$this->coordinate.'</div>';
-        $mapPopupContent .= '<div class="my-2"><strong>'.__('notes').':</strong><br> don`t go to this area </div>';
+        $mapPopupContent .= '<div class="my-2"><strong>'.__('Outbreak Name').':</strong><br>'.$this->name_link.'</div>';
+        $mapPopupContent .= '<div class="my-2"><strong>'.__('Country').':</strong><br>'.$this->country.'</div>';
+        $mapPopupContent .= '<div class="my-2"><strong>'.__('Outbreak Coordinates').':</strong><br>'.$this->coordinate.'</div>';
+        $mapPopupContent .= '<div class="my-2 text-red-500"><strong>'.__('notes').':</strong><br> click on the Outbreak name to read the instructions </div>';
         return $mapPopupContent;
     }
 }

@@ -17,8 +17,9 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-
 Route::group(['middleware'=>['auth']], function(){
+    //show auth user profile
+    Route::get('/info', 'App\Http\Controllers\PersonalController@index')->name('show');
     Route::get('/dashboard', 'App\Http\Controllers\PageController@index')->name('dashboard');
 });
 // route for outbreakmap index
@@ -42,6 +43,7 @@ Route::group(['middleware'=>['auth', 'role:user']], function(){
 
     //route resource for personals
     Route::resource('/personals', 'App\Http\Controllers\PersonalController');
+    Route::get('/personals/{personal:passport}', 'App\Http\Controllers\PersonalController@export');
     Route::resource('/meds', 'App\Http\Controllers\MedController');
     // Route::post('/personal', 'App\Http\Controllers\MedController@store')->name('meds.store');
 });

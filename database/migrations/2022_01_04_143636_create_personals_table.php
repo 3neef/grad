@@ -17,9 +17,9 @@ class CreatePersonalsTable extends Migration
         Schema::create('personals', function (Blueprint $table) {
             $table->id();
             $table->bigInteger('user_id')->unsigned()->index();
-            $table->foreign('user_id')
-      ->references('id')->on('users')
-      ->onDelete('cascade');
+    //         $table->foreign('user_id')
+    //   ->references('id')->on('users')
+    //   ->onDelete('cascade');
             $table->string('fname');
             $table->string('lname');
             $table->integer('age');

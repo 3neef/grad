@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Med;
 use App\Models\Personal;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 
 class MedController extends Controller
@@ -15,8 +16,11 @@ class MedController extends Controller
      */
     public function index()
     {
-        $med=Med::all();
-        return view('medicals.index', compact('med'));
+        // $id = auth()->id();
+        // $meds = Med::where('user_id', $id)->get();
+        // $user= Auth::user();
+        // return view('medicals.personal')->with('meds', $meds )->with('user', $user);
+        
     }
 
     /**

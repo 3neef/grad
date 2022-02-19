@@ -14,7 +14,7 @@ class User extends Authenticatable
     use LaratrustUserTrait;
     use HasApiTokens, HasFactory, Notifiable;
 
-    //hasone personal
+    //User model
     public function personal()
     {
         return $this->hasOne('App\Models\Personal');

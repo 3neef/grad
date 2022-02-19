@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Models\Personal;
+use App\Models\User;
 
 
 class PersonalController extends Controller
@@ -16,8 +17,16 @@ class PersonalController extends Controller
      */
     public function index()
     {
-        $personal = Personal::all();
-        return view('personal.index', compact('personal'));
+        $id = auth()->id();
+        $personals = User::with('personal','med')->where('id', $id)->get();
+        // dd ($personals);
+        $user= Auth::user();
+        return view('medicals.personal')->with('personals', $personals)->with('user', $user);
+        // $id = auth()->id();
+        // $personal = Personal::where('user_id', $id)->get();
+        // $user= Auth::user();
+        // return view('medicals.personal')->with('personal', $personal )->with('user', $user);
+        
     }
 
     /**
@@ -96,8 +105,11 @@ class PersonalController extends Controller
      */
     public function show($id)
     {
-        $personal = Personal::find($id);
-        return view('medicals.show')->with('personal', $personal);
+        
+        // $personals = User::with('personal','med')->where('id', $id)->get();
+        // // dd ($personals);
+        // $user = User::find($id);
+        // return view('medicals.show', compact('personals'))->with('user', $user);
     }
 
     /**
@@ -106,6 +118,16 @@ class PersonalController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
+    public function export(Personal $personal)
+    {
+        $personals = User::with('personal','med')->where('id', $personal)->get();
+        // dd ($personals);
+        $user = User::find($personal->user_id);
+        return view('medicals.show', compact('personals'))->with('user', $user);
+        // return view('medicals.export', compact('personal'));
+    }
+
+    
     public function edit($id)
     {
         //

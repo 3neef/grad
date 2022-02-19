@@ -28,6 +28,16 @@
           {!! $errors->first('name', '<span class="invalid-feedback" role="alert">:message</span>') !!}
         </div>
         <div class=" form-group mb-4">
+          <label for="name" class="leading-7 text-sm text-gray-600">Country</label>
+          <input type="text" id="country" type="text" class="w-full bg-white rounded border border-gray-300 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out form-control{{ $errors->has('country') ? ' is-invalid' : '' }}" name="country" value="{{ old('country') }}" required >
+          {!! $errors->first('country', '<span class="invalid-feedback" role="alert">:message</span>') !!}
+        </div>
+        <div class=" form-group mb-4">
+          <label for="name" class="leading-7 text-sm text-gray-600">Cases</label>
+          <input type="text" id="cases" type="text" class="w-full bg-white rounded border border-gray-300 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out form-control{{ $errors->has('cases') ? ' is-invalid' : '' }}" name="cases" value="{{ old('cases') }}" required >
+          {!! $errors->first('cases', '<span class="invalid-feedback" role="alert">:message</span>') !!}
+        </div>
+        <div class=" form-group mb-4">
           <label for="message" class="leading-7 text-sm text-gray-600">Address</label>
           <textarea id="address" class=" w-full bg-white rounded border border-gray-300 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200 h-32 text-base outline-none text-gray-700 py-1 px-3 resize-none leading-6 transition-colors duration-200 ease-in-out form-control{{ $errors->has('address') ? ' is-invalid' : '' }}" name="address" rows="4" ></textarea>
           {!! $errors->first('address', '<span class="invalid-feedback" role="alert">:message</span>') !!}

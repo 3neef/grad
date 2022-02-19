@@ -122,6 +122,13 @@ final class OutbreaksTable extends PowerGridComponent
                 ->makeInputText(),
 
             Column::add()
+                ->title('Country')
+                ->field('country')
+                ->sortable()
+                ->searchable()
+                ->makeInputText(),
+
+            Column::add()
                 ->title('ADDRESS')
                 ->field('address')
                 ->sortable()

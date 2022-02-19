@@ -1,7 +1,7 @@
 <x-app-layout>
    <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-             {{ __('Profile') }}
+             {{ __('Index') }}
         </h2>
     </x-slot>
     {{--taileind css table--}}
@@ -45,7 +45,7 @@
                 Gender
               </dt>
               <dd class="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
-                {{$user->personal->gender}}
+                {{$user->personal->passport}}
               </dd>
             </div>
            

@@ -48,6 +48,8 @@ class OutbreakController extends Controller
 
         $newOutbreak = $request->validate([
             'name'      => 'required|max:60',
+            'cases'      => 'required|integer',
+            'country'      => 'required|max:60',
             'address'   => 'nullable|max:255',
             'latitude'  => 'nullable|required_with:longitude|max:15',
             'longitude' => 'nullable|required_with:latitude|max:15',
@@ -96,6 +98,8 @@ class OutbreakController extends Controller
 
         $outbreakData = $request->validate([
             'name'      => 'required|max:60',
+            'cases'      => 'required|integer',
+            'country'      => 'required|max:60',
             'address'   => 'nullable|max:255',
             'latitude'  => 'nullable|required_with:longitude|max:15',
             'longitude' => 'nullable|required_with:latitude|max:15',

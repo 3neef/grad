@@ -26,7 +26,8 @@ class Personal extends Model
     //     'passport',
 
     // ];  
-    
+
+  //personal model
     public function user()
     {
         return $this->belongsTo('App\Models\User');

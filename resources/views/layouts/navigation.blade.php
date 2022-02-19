@@ -68,7 +68,7 @@
                             <a class="w-full" href="{{route('personals.create')}}">Personal Information</a>
                         </li>
                         <li class="px-2 py-1 transition-colors duration-150 hover:text-gray-800 dark:hover:text-gray-200">
-                            <a class="w-full" href="{{route('personals.show' , 'personal')}}">Show Personal Information</a>
+                            <a class="w-full" href="{{route('show')}}">Show Personal Information</a>
                         </li>
                     </ul>
                 </template>

@@ -17,6 +17,8 @@ class CreateOutbreaksTable extends Migration
         Schema::create('outbreaks', function (Blueprint $table) {
             $table->id();
             $table->string('name', 60);
+            $table->string('country', 60);
+            $table->integer('cases');
             $table->string('address')->nullable();
             $table->string('latitude', 15)->nullable();
             $table->string('longitude', 15)->nullable();
