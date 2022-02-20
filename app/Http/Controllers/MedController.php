@@ -93,7 +93,17 @@ class MedController extends Controller
      */
     public function update(Request $request, Med $med)
     {
-        //
+        $meds= $request ->validate([
+            'blood' => ['required', 'string', 'max:255'],
+            'alarg' => ['required', 'string', 'max:255'],
+            'chronic' => ['required', 'string', 'max:255'],
+            'insure' => ['required', 'string', 'max:255'],
+            
+        ]);
+
+       $med->update($meds);
+        return redirect()->route('personals.edit', Auth::id())->with('success', 'Personal Information has been updated');
+
     }
 
     /**

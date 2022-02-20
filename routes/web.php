@@ -43,7 +43,7 @@ Route::group(['middleware'=>['auth', 'role:user']], function(){
 
     //route resource for personals
     Route::resource('/personals', 'App\Http\Controllers\PersonalController');
-    Route::get('/personals/{personal:passport}', 'App\Http\Controllers\PersonalController@export');
+    Route::get('/personals/{personal:passport}', 'App\Http\Controllers\PersonalController@export')->name('personals.export');
     Route::resource('/meds', 'App\Http\Controllers\MedController');
     // Route::post('/personal', 'App\Http\Controllers\MedController@store')->name('meds.store');
 });

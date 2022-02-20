@@ -122,15 +122,19 @@ class PersonalController extends Controller
     {
         $personals = User::with('personal','med')->where('id', $personal)->get();
         // dd ($personals);
+        
         $user = User::find($personal->user_id);
         return view('medicals.show', compact('personals'))->with('user', $user);
         // return view('medicals.export', compact('personal'));
     }
 
     
-    public function edit($id)
+    public function edit(Personal $personal)
     {
-        //
+        $personals = User::with('personal','med')->where('id', $personal)->get();
+        
+        $user = User::find($personal->user_id);
+        return view('medicals.edit', compact('personals'))->with('user', $user);
     }
 
     /**
@@ -140,9 +144,28 @@ class PersonalController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, Personal $personal)
     {
-        //
+        $personals = $request->validate([
+           
+            'fname' => ['required', 'string', 'max:255'],
+            'mname' => ['required', 'string', 'max:255'],
+            'lname' => ['required', 'string', 'max:255'],
+            'age' => ['required', 'integer'],
+            'phone' => ['required', 'string', 'max:255'],
+            'gender' => ['required', 'string', 'max:255'],
+            'passport' => ['required', 'string', 'max:255'],
+            'country' => ['required', 'string', 'max:255'],
+            'city' => ['required', 'string', 'max:255'],
+            'state' => ['required', 'string', 'max:255'],
+            'adress' => ['required', 'string', 'max:255'],
+            
+            
+        ]);
+        $personal->update($personals);
+        return redirect()->route('personals.edit', Auth::id())->with('success', 'Personal Information has been updated');
+
+
     }
 
     /**
