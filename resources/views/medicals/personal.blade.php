@@ -1,22 +1,64 @@
 <x-app-layout>
    <x-slot name="header">
-        <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-             {{ __('Index') }}
-        </h2>
+        
+     <div class="my-6 lg:my-12 container px-6 mx-auto flex flex-col lg:flex-row items-start lg:items-center justify-between pb-4 border-b border-gray-300">
+       <div>
+           <h4 class="text-2xl font-bold leading-tight text-gray-800">User Profile</h4>
+           <ul class="flex flex-col md:flex-row items-start md:items-center text-gray-600 text-sm mt-3">
+               <li class="flex items-center mr-3 mt-3 md:mt-0">
+                   <span class="mr-2">
+                       <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-paperclip" width="16" height="16" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                           <path stroke="none" d="M0 0h24v24H0z" />
+                           <path d="M15 7l-6.5 6.5a1.5 1.5 0 0 0 3 3l6.5 -6.5a3 3 0 0 0 -6 -6l-6.5 6.5a4.5 4.5 0 0 0 9 9 l6.5 -6.5" />
+                       </svg>
+                   </span>
+                   <span>Active</span>
+               </li>
+               <li class="flex items-center mr-3 mt-3 md:mt-0">
+                   <span class="mr-2">
+                       <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-trending-up" width="16" height="16" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                           <path stroke="none" d="M0 0h24v24H0z" />
+                           <polyline points="3 17 9 11 13 15 21 7" />
+                           <polyline points="14 7 21 7 21 14" />
+                       </svg>
+                   </span>
+                   <span> Trending</span>
+               </li>
+               <li class="flex items-center mt-3 md:mt-0">
+                   <span class="mr-2">
+                       <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-plane-departure" width="16" height="16" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                           <path stroke="none" d="M0 0h24v24H0z" />
+                           <path d="M15 12h5a2 2 0 0 1 0 4h-15l-3 -6h3l2 2h3l-2 -7h3z" transform="rotate(-15 12 12) translate(0 -1)" />
+                           <line x1="3" y1="21" x2="21" y2="21" />
+                       </svg>
+                   </span>
+                   <span>Started on 29 Jan 2020</span>
+               </li>
+           </ul>
+       </div>
+       <div class="mt-6 lg:mt-0">
+           <a href="{{route('personals.edit', $user->personal->id )}}">
+            <button class="transition duration-150 ease-in-out hover:bg-indigo-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-700 border bg-indigo-700 rounded text-white px-8 py-2 text-sm">Edit Profile</button>
+          </a>
+       </div>
+       
+   </div>
       </x-slot>
       {{--taileind css table--}}
-      <div>
-        <button onclick="openModal()" class='mt-4 mb-4 float-righ inline-flex items-center px-4 py-2 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500'>Generate Profile QR Code</button>
-    </div>
+      
    
     <div class="bg-white shadow overflow-hidden sm:rounded-lg">
-        <div class="px-4 py-5 sm:px-6">
+        <div class="px-4 py-2 sm:px-6">
+          
           <h3 class="text-lg leading-6 font-medium text-gray-900">
             Applicant Information
           </h3>
           <p class="mt-1 max-w-2xl text-sm text-gray-500">
             Personal details and application.
           </p>
+          <div>
+            <button onclick="openModal()" class='mt-4 mb-4 float-righ inline-flex items-center px-4 py-2 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500'>Generate Profile QR Code</button>
+        </div>
         </div>
         <div class="border-t border-gray-200">
           <dl>
@@ -56,12 +98,48 @@
          
           </dl>
         </div>
+        <div class="max-w-2xl mx-auto py-16 px-4 sm:py-24 sm:px-6 lg:max-w-7xl lg:px-8">
+          <h2 class="text-2xl font-extrabold tracking-tight text-gray-900">Doctor Visits</h2>
+      
+          
+       
+          {{-- ops --}}
+          <div class="grid grid-cols-1 gap-8 mt-8 xl:mt-12 xl:gap-12 md:grid-cols-2 xl:grid-cols-3">
+            @foreach ($user->visits as $visit)
+                
+            <div class="p-8 space-y-3 border-2 border-blue-400 dark:border-blue-300 rounded-xl">
+              <span class="inline-block text-blue-500 dark:text-blue-400">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="w-8 h-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 18.657A8 8 0 016.343 7.343S7 9 9 10c0-2 .5-5 2.986-7C14 5 16.09 5.777 17.656 7.343A7.975 7.975 0 0120 13a7.975 7.975 0 01-2.343 5.657z" />
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.879 16.121A3 3 0 1012.015 11L11 14H9c0 .768.293 1.536.879 2.121z" />
+                    </svg>
+                </span>
+
+                <h1 class="text-2xl font-semibold text-gray-700 capitalize dark:text-white">{{$visit->doctor_name}}</h1>
+                
+                <p class="text-gray-500 dark:text-gray-300">
+                  {{$visit->diagnosis}}
+                </p>
+                <p class="mt-1 text-sm text-gray-500">{{$visit->created_at->format('d/m/Y' )}}</p>
 
 
+                <a href="#" class="inline-flex p-2 text-blue-500 capitalize transition-colors duration-200 transform bg-blue-100 rounded-full dark:bg-blue-500 dark:text-white hover:underline hover:text-blue-600 dark:hover:text-blue-500">
+                  <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 9l3 3m0 0l-3 3m3-3H8m13 0a9 9 0 11-18 0 9 9 0 0118 0z" />
+                  </svg>
+                </a>
+              </div>
+              
+              
+              
+              @endforeach
+              
+            </div>
+          
         {{-- modal --}}
       
       <div class="main-modal fixed w-full h-100 inset-0 z-50 overflow-hidden flex justify-center items-center animated fadeIn faster"
-          style="background: rgba(0,0,0,.7);">
+          style="background: rgba(0, 0, 0, 0.7);">
           <div
               class="border border-teal-500 shadow-lg modal-container bg-white w-11/12 md:max-w-md mx-auto rounded shadow-lg z-50 overflow-y-auto">
               <div class="modal-content py-4 text-left px-6">

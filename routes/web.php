@@ -45,6 +45,7 @@ Route::group(['middleware'=>['auth', 'role:user']], function(){
     Route::resource('/personals', 'App\Http\Controllers\PersonalController');
     Route::get('/personals/{personal:passport}', 'App\Http\Controllers\PersonalController@export')->name('personals.export');
     Route::resource('/meds', 'App\Http\Controllers\MedController');
+    Route::resource('/visits', 'App\Http\Controllers\VisitController');
     // Route::post('/personal', 'App\Http\Controllers\MedController@store')->name('meds.store');
 });
 

@@ -18,9 +18,15 @@ class PersonalController extends Controller
     public function index()
     {
         $id = auth()->id();
-        $personals = User::with('personal','med')->where('id', $id)->get();
-        // dd ($personals);
+        $personals = User::with('personal','med','visits')->where('id', $id)->get();
         $user= Auth::user();
+        foreach ($personals as $personal) {
+            $personal->personal;
+            $personal->med;
+            $personal->visits;
+        }
+     
+        // dd ($personals);
         return view('medicals.personal')->with('personals', $personals)->with('user', $user);
         // $id = auth()->id();
         // $personal = Personal::where('user_id', $id)->get();

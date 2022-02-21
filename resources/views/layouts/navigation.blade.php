@@ -31,7 +31,7 @@
             </li>
 
             <li class="relative px-6 py-3">
-                <x-nav-link href="{{route('show')}}" :active="request()->routeIs('users.index')">
+                <x-nav-link href="{{route('show')}}" :active="request()->routeIs('show')">
                     <x-slot name="icon">
                         <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"
                              xmlns="http://www.w3.org/2000/svg">
@@ -81,7 +81,7 @@
                             <a class="w-full" href="{{route('personals.create')}}">Personal Information</a>
                         </li>
                         <li class="px-2 py-1 transition-colors duration-150 hover:text-gray-800 dark:hover:text-gray-200">
-                            <a class="w-full" href="{{route('personals.edit', Auth::id())}}">Edit Personal Information</a>
+                            <a class="w-full" href="{{route('personals.edit', Auth::user()->id)}}">Edit Personal Information</a>
                         </li>
                         
                     </ul>

@@ -17,7 +17,7 @@
   <div class="mt-5 flex lg:mt-0 lg:ml-4">
       {{-- <a href="{{route('round.create')}}"> --}}
       <span class="sm:ml-3">
-        <button type="button" class="inline-flex items-center px-4 py-2 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
+        <button type="button" onclick="document.getElementById('myModal').showModal()" id="btn" class="inline-flex items-center px-4 py-2 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
           <!-- Heroicon name: solid/check -->
           <svg class="-ml-1 mr-2 h-5 w-5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
             <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd" />
@@ -262,6 +262,114 @@
       </div>      
       {{-- try --}}
       
-      
+      <!-- component -->
+<style>
+  dialog[open] {
+  animation: appear .15s cubic-bezier(0, 1.8, 1, 1.8);
+}
+
+  dialog::backdrop {
+    background: linear-gradient(45deg, rgba(0, 0, 0, 0.5), rgba(54, 54, 54, 0.5));
+    backdrop-filter: blur(3px);
+  }
+  
+ 
+@keyframes appear {
+  from {
+    opacity: 0;
+    transform: translateX(-3rem);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+} 
+</style>
+
+
+
+<dialog id="myModal" class="h-auto w-11/12 md:w-1/2 p-5  bg-white rounded-md ">
+        
+   <div class="flex flex-col w-full h-auto ">
+        <!-- Header -->
+        <div class="flex w-full h-auto justify-center items-center">
+          <div class="flex w-10/12 h-auto py-3 justify-center items-center text-center text-2xl font-bold text-gray-500 mb-10">
+                New Doctor Visit
+          </div>
+          <div onclick="document.getElementById('myModal').close();" class="flex w-1/12 h-auto justify-center cursor-pointer">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#000000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-x"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+          </div>
+          <!--Header End-->
+        </div>
+          <!-- Modal Content-->
+           <!-- component -->
+<form action="{{route('visits.store')}}" method="POST">
+  @csrf
+    <div class=" bg-white rounded-md px-6 py-10 max-w-2xl mx-auto">
+      <div class="grid grid-cols-6 gap-6">
+        <div class="col-span-6 sm:col-span-3 form-group">
+          {{--hidden input--}}
+          <input type="hidden" name="user_id" value="{{Auth::user()->id}}">
+          <label for="doctor_name" class="block text-sm font-medium text-gray-700">Doctor Name</label>
+          <input type="text" name="doctor_name" id="doctor_name" placeholder="{{--(Auth::user()->personal()->fname)--}}" autocomplete="given-name" class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md">
+        </div>
+
+        <div class="col-span-6 sm:col-span-3 form-group">
+          <label for="last-name" class="block text-sm font-medium text-gray-700">Hospital</label>
+          <input type="text" name="hospital" id="hospital" autocomplete="family-name" class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md">
+        </div>
+
+        <div class="col-span-6 sm:col-span-4 form-group">
+          <label for="middle-name" class="block text-sm font-medium text-gray-700">Department</label>
+          <input type="text" name="department" id="department" autocomplete="family-name" class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md">
+        </div>
+      </div>
+      <div class=" form-group">
+        <label for="symptoms" class="block text-sm font-medium text-gray-700"> Symptoms </label>
+        <div class="mt-1">
+          <textarea id="symptoms" name="symptoms" rows="3" class="shadow-sm focus:ring-indigo-500 focus:border-indigo-500 mt-1 block w-full sm:text-sm border border-gray-300 rounded-md" placeholder="It goes here"></textarea>
+        </div>
+        <p class="mt-2 text-sm text-gray-500">.</p>
+      </div>
+      <div class=" form-group">
+        <label for="lap_tests" class="block text-sm font-medium text-gray-700"> Lap Tests </label>
+        <div class="mt-1">
+          <textarea id="lap_tests" name="lap_tests" rows="3" class="shadow-sm focus:ring-indigo-500 focus:border-indigo-500 mt-1 block w-full sm:text-sm border border-gray-300 rounded-md" placeholder="It goes here"></textarea>
+        </div>
+        <p class="mt-2 text-sm text-gray-500">.</p>
+      </div>
+      <div class=" form-group">
+        <label for="diagnosis" class="block text-sm font-medium text-gray-700"> Diagnosis </label>
+        <div class="mt-1">
+          <textarea id="diagnosis" name="diagnosis" rows="3" class="shadow-sm focus:ring-indigo-500 focus:border-indigo-500 mt-1 block w-full sm:text-sm border border-gray-300 rounded-md" placeholder="It goes here"></textarea>
+        </div>
+        <p class="mt-2 text-sm text-gray-500">.</p>
+      </div>
+      <div class=" form-group">
+        <label for="medicine" class="block text-sm font-medium text-gray-700"> Medicine </label>
+        <div class="mt-1">
+          <textarea id="medicine" name="medicine" rows="3" class="shadow-sm focus:ring-indigo-500 focus:border-indigo-500 mt-1 block w-full sm:text-sm border border-gray-300 rounded-md" placeholder="It goes here"></textarea>
+        </div>
+        <p class="mt-2 text-sm text-gray-500">.</p>
+      </div>
+      <div class=" form-group">
+        <label for="prescription" class="block text-sm font-medium text-gray-700"> Prescription </label>
+        <div class="mt-1">
+          <textarea id="prescription" name="prescription" rows="3" class="shadow-sm focus:ring-indigo-500 focus:border-indigo-500 mt-1 block w-full sm:text-sm border border-gray-300 rounded-md" placeholder="It goes here"></textarea>
+        </div>
+        <p class="mt-2 text-sm text-gray-500">.</p>
+      </div>
+        <button type="submit" class=" px-6 py-2 mx-auto block rounded-md text-lg font-semibold text-indigo-100 bg-gray-600  ">ADD VISIT</button>
+      </div>
+    </div>
+  
+</form>
+          <!-- End of Modal Content-->
+          
+          
+          
+        </div>
+</dialog>
 
 </x-app-layout>
