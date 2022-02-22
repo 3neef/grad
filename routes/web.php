@@ -29,6 +29,8 @@ Route::get('/outbreaks/create', 'App\Http\Controllers\OutbreakController@create'
 // resource route for outbreaks
 Route::resource('/outbreaks', 'App\Http\Controllers\OutbreakController');
 
+Route::resource('/personals', 'App\Http\Controllers\PersonalController');
+Route::get('/personals/{personal:passport}', 'App\Http\Controllers\PersonalController@export')->name('personals.export');
 Route::middleware('auth')->group(function () {
     Route::view('about', 'about')->name('about');
     
@@ -42,8 +44,6 @@ Route::group(['middleware'=>['auth', 'role:user']], function(){
     Route::get('/dashboard/profile', 'App\Http\Controllers\PageController@profile')->name('dashboard.profile');
 
     //route resource for personals
-    Route::resource('/personals', 'App\Http\Controllers\PersonalController');
-    Route::get('/personals/{personal:passport}', 'App\Http\Controllers\PersonalController@export')->name('personals.export');
     Route::resource('/meds', 'App\Http\Controllers\MedController');
     Route::resource('/visits', 'App\Http\Controllers\VisitController');
     // Route::post('/personal', 'App\Http\Controllers\MedController@store')->name('meds.store');

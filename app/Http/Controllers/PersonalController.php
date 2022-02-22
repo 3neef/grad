@@ -6,7 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Models\Personal;
 use App\Models\User;
-
+use GuzzleHttp\Promise\Create;
 
 class PersonalController extends Controller
 {
@@ -56,7 +56,8 @@ class PersonalController extends Controller
     public function store(Request $request )
     {
         // dd($request->all());
-        
+        $this->authorize('create', new Personal);
+
         $request->validate([
             'user_id' => ['required', 'unique:personals'],
             'fname' => ['required', 'string', 'max:255'],
@@ -126,7 +127,7 @@ class PersonalController extends Controller
      */
     public function export(Personal $personal)
     {
-        $personals = User::with('personal','med')->where('id', $personal)->get();
+        $personals = User::with('personal','med','visits')->where('id', $personal)->get();
         // dd ($personals);
         
         $user = User::find($personal->user_id);
@@ -137,6 +138,7 @@ class PersonalController extends Controller
     
     public function edit(Personal $personal)
     {
+        $this->authorize('update', $personal);
         $personals = User::with('personal','med')->where('id', $personal)->get();
         
         $user = User::find($personal->user_id);
@@ -152,6 +154,7 @@ class PersonalController extends Controller
      */
     public function update(Request $request, Personal $personal)
     {
+        $this->authorize('update', $personal);
         $personals = $request->validate([
            
             'fname' => ['required', 'string', 'max:255'],
